@@ -104,12 +104,12 @@ DIVIDE(
 
 ## 📊 Key Business Insights
 
-| Metric                      | Top Performer or Issue Area     | Actionable Insight                                     |
-| --------------------------- | ------------------------------- | ------------------------------------------------------ |
-| Most Adjusted Product       | `anderson-filing-cabinet`       | Review supplier or stocking policy                     |
-| Top Supplier by Adjustments | `James G.` (373 manual changes) | Investigate delivery errors or forecast mismatches     |
-| Year with Stockout Spike    | 2025 (20+ stockouts)            | Suggests growing demand or poor replenishment strategy |
-| Peak Inventory Change Hour  | Between 6 PM – 10 PM            | Warehouse operations may need to shift resource timing |
+| Metric                      | Top Performer or Issue Area                | Actionable Insight                                     |
+| --------------------------- | ------------------------------------------ | ------------------------------------------------------ |
+| Most Adjusted Product       | `anderson-Wagnar-Organizer 13828264`       | Review supplier or stocking policy                     |
+| Top Supplier by Adjustments | `James Garcia II.` (373 manual changes)    | Investigate delivery errors or forecast mismatches     |
+| Year with Stockout Spike    | 2025 (20+ stockouts)                       | Suggests growing demand or poor replenishment strategy |
+| Top Product by Out of stock | galvan-schneider-watch-score210            | Increase Inventory Reorder Levels                      |
 
 
 ## 📁 Project Structure
