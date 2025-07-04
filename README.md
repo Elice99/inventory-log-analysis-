@@ -76,7 +76,7 @@ ORDER BY total_stockout DESC;
 ````
 
 For full SQL logic, see:
-📄 [`sql_scripts/data_cleaning_and_analysis.sql`](./sql_scripts/data_cleaning_and_analysis.sql)
+📄 [`sql_scripts/data_cleaning_and_analysis.sql`](./sql_scripts/ecom_inventory.sql)
 
 
 ## 📈 Power BI Dashboard
