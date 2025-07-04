@@ -1,0 +1,11 @@
+We suspect that some products are frequently going out of stock or being adjusted manually, but we don’t know which ones or why. 
+We need help identifying products with the highest number of 
+inventory changes, especially manual adjustments and stockouts...so we can investigate and improve inventory planning.
+
+Stakeholder: Inventory Manager
+
+Objectives
+1. Analyze inventory logs
+2. Spot patterns in stockouts and manual adjustments
+3. Highlight the products most affected
+
