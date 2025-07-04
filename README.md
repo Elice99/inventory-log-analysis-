@@ -133,6 +133,6 @@ Inventory-Stock-Analysis-SQL-PowerBI/
 
 Data Analyst | SQL | Power BI | Data Transformation
 
-📫 [LinkedIn](#) | [Portfolio](#) | [Email](#)
+📫 [LinkedIn](#) | [Portfolio](#) | [Email](**basseyelisha99@gmail.com**)
 
 
