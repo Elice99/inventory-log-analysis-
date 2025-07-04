@@ -34,7 +34,7 @@ To transform raw warehouse inventory logs and product reviews into clean, usable
 ## 🧹 Data Cleaning & SQL Transformation
 
 Key cleaning and transformation steps are documented in:
-👉 [`sql_scripts/data_cleaning_and_analysis.sql`](./sql_scripts/data_cleaning_and_analysis.sql)
+👉 [`sql_scripts/data_cleaning_and_analysis.sql`](./sql_scripts/ecom_inventory.sql)
 
 ### ✅ Highlights
 
