@@ -67,12 +67,12 @@ WHERE [change_type] = 'inventory_adjustment_manual'
 GROUP BY [product_id]
 ORDER BY total_manual_adj desc
 
--- Stockouts per product
-SELECT product_id, COUNT(*) AS total_stockout
+-- stockouts per product--
+SELECT [product_id], count(*) as total_stockout
 FROM v_inventorylogz
-WHERE stock_after_change <= 0
+WHERE [stock_after_change] <= 0
 GROUP BY product_id
-ORDER BY total_stockout DESC;
+ORDER BY total_stockout desc
 ````
 
 For full SQL logic, see:
