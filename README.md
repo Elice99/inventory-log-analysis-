@@ -1,135 +1,134 @@
-# inventory-log-analysis & Dashboard Project
-This project focuses on analyzing inventory logs for monitoring inventory adjustments, stock-outs, product-level trends, and supplier activities. This dashboard empowers stakeholders to identify inefficiencies, reduce stockout rates, and improve inventory management processes.
 
-## Objectives
-To gain insights from raw inventory logs and create a dynamic PowerBI dashboard that Highlights:
-   - Total Out of stock
-   - Manual adjustments
-   - Stock movement trend
-   - Product Performance
+# 📦 Inventory Stock Analysis (SQL + Power BI)
 
-## Dataset Overview
-  The dataset includes:
-   - InventoryLog
-     - 'log_id' Unique identifier for the logs
-     - 'product_id' Unique identifier for the product
-     - 'timestamp' Raw date and time of the inventory transaction (consisting of Null Values)
-     - 'change type'
-     - 'quantity changed'
-     - 'stock after change'
-     - 'log note'
-  - Product Review
-     - 'review_id'
-     - 'product_id'
-     - 'customer_id'
-     - 'reviewers name'
-     - 'rating'
-     - 'review title'
-     - 'review text'
-     - 'review date'
-     - 'is_verified_purchase'
-     - 'helpfuness_vote'
-  - Product
-     - 'product_id'
-     - 'is_popular_product
-     - 'brand name'
-     - 'product name'
-     - 'category'
-     - 'supplier_id'
-     - 'description'
-     - 'base price'
-     - 'currency'
-     - 'product attribute'
-     - 'unit of measure'
-     - 'stock quantity'
-     - 'date added'
-     - 'last updated date'
-     - 'is_active'
-  - Suppliers
-     - 'suppliers_id'
-     - 'suppliers name
-     - 'contact person'
-     - 'supplier email'
-     - 'supplier phone'
-     - 'supplier address'
-     - 'country'
-     - 'supplier registration date'
-     - 'preferred supplier'     
-    
+This project demonstrates an end-to-end data analytics pipeline—from raw data cleaning in SQL to interactive business insights via Power BI. The goal is to track inventory adjustments, stockouts, and supplier performance for improved stock management.
 
 
-## ⚙️ Tools & Skills Applied
+## 🧰 Tools Used
 
-| Tool                        | Purpose                                   |
-|-----------------------------|-------------------------------------------|
-| **SQL**                     | Data cleaning, transaformation and initial analysis |
-|   **PowerBI** Power Query               | Data type correction, Column renaming, and new calculated columns     |
-|   **PowerBI** Data Modeling               | Defined relationships between tables     |
-|   **PowerBI** DAX               | Created custom measures (e.g out of stock rate, adjustment count etc)     |
+- **SQL Server**: Data cleaning, transformation, and analysis
+- **Power BI**: Data modeling and interactive dashboarding
+- **GitHub**: Version control and project documentation
 
 
-## 🧹 Data Processing Workflow
+## 📌 Project Objective
+
+To transform raw warehouse inventory logs and product reviews into clean, usable datasets using SQL and generate actionable insights with Power BI visualizations. This enables decision-makers to monitor product stock levels, identify manual adjustment patterns, and assess supplier reliability.
 
 
-1. **📂SQL Cleaning & Preprocessing**
-   - Removed duplicates
-   - Standardize date and time formats
-   - Segregated date parts ( 'Year', 'Month' 'Day' 'AM/PM')
-   - Identified null values and cleaned inconsistencies
-   - Standardize change type and derived stock after change
-   - Categorized numerical ratings into human-readable labels
-   - Normalize text case for consistency in product_name and category
-   - Calculated `Total Inventory Changes per Product`, `Manual Adjustments per Product`, and `Stockouts per Product`,`Inventory Changes by Date`,`Time-Based Inventory Patterns` 
+## 🗃️ Dataset Overview
 
-All data transformation steps were written in SQL and are available here:
+### 🔹 Raw Tables
+- `inventory_logs`: Contains timestamped records of inventory changes
+- `products`: Metadata including product name, brand, category, supplier
+- `product_reviews`: Customer ratings for products
+- `suppliers`: Supplier details (name, contact, country)
 
-👉 [data_cleaning_and_analysis.sql]E_com inventoryLog.sql
+### 🔸 Key Issues Identified
+- Inconsistent timestamp formats
+- Duplicate records in `inventory_logs` and `product_reviews`
+- Non-standardized categorical fields (`stock_status`, `change_type`)
+- Null values in key columns
 
-  
 
-3. **Loading into Power BI**
-   - Imported cleaned SQL views or queries
-   - Created DAX measures like:
-     - `Stockout Rate (%)`
-     - `Total Manual Adjustments`
-     - `Daily Stock-Out Count`
+## 🧹 Data Cleaning & SQL Transformation
 
----
+Key cleaning and transformation steps are documented in:
+👉 [`sql_scripts/data_cleaning_and_analysis.sql`](./sql_scripts/data_cleaning_and_analysis.sql)
 
-## 🔍 Key Visuals
+### ✅ Highlights
 
-| Visual                          | Description |
-|----------------------------------|-------------|
-| **Total Out of Stock**           | Card showing all stock-out events detected |
-| **Manual Adjustments Tracker**   | By product and supplier |
-| **Out-of-Stock Trends**          | Line chart with YoY breakdown |
-| **Top Products by Stock-Outs**   | Products with most stock-out events |
-| **Geographic Heatmap**           | Change events by country |
+- Removed duplicates using `ROW_NUMBER()` and CTEs
+- Created SQL **Views** (not tables) to preserve raw data
+- Extracted date, time, year, and AM/PM info from timestamps
+- Categorized stock status (`In stock` and `Out of stock`)
+- Labeled product ratings (`Very Poor` → `Excellent`)
+- Standardized lowercase formatting for product and category names
 
----
-## 📊 Dashboard Overview
+### 📂 Views Created
 
-Built for warehouse and supply chain teams to:
+| View Name           | Description                                      |
+|---------------------|--------------------------------------------------|
+| `v_inventorylogz`    | Cleaned inventory log with timestamp breakdown   |
+| `v_product_review`   | Product reviews with rating labels               |
+| `v_product`          | Product metadata with normalized names/categories|
+| `v_suppliers`        | Supplier directory with country/location info    |
 
-- Identify high-risk products with recurring stock-outs
-- Monitor manual adjustment trends
-- Analyze change events by supplier, country, and brand
-- Understand year-on-year stock-out trends
 
-(<img width="638" alt="Screenshot 2025-06-27 111849" src="https://github.com/user-attachments/assets/84e69621-2416-4f48-9b17-594810b9de89" />
+## 📊 Analysis Performed in SQL
+
+Sample queries include:
+
+```sql
+-- Top products by manual inventory adjustments
+SELECT product_id, COUNT(*) AS total_manual_adj
+FROM v_inventorylogz
+WHERE change_type = 'inventory_adjustment_manual'
+GROUP BY product_id
+ORDER BY total_manual_adj DESC;
+
+-- Stockouts per product
+SELECT product_id, COUNT(*) AS total_stockout
+FROM v_inventorylogz
+WHERE stock_after_change <= 0
+GROUP BY product_id
+ORDER BY total_stockout DESC;
+````
+
+For full SQL logic, see:
+📄 [`sql_scripts/data_cleaning_and_analysis.sql`](./sql_scripts/data_cleaning_and_analysis.sql)
+
+
+## 📈 Power BI Dashboard
+
+![Dashboard Screenshot](./powerbi/dashboard_screenshot.png)
+
+### 📌 Visualizations Include:
+
+* **Bar Charts**: Top products by manual adjustments
+* **Line Charts**: Stockout trend over years
+* **Map**: Inventory change events by country
+* **Card Visuals**: Stockout rate, total manual adjustments
+* **Slicers**: Month, Year, Product, Supplier
+
+### 🧮 Sample DAX Measures
+
+```DAX
+StockoutRate = 
+DIVIDE(
+    COUNTROWS(FILTER(v_inventorylogz, v_inventorylogz[stock_after_change] <= 0)),
+    COUNTROWS(v_inventorylogz)
 )
+```
 
 
-## 🧠 Business Questions Answered
+## 📊 Key Business Insights
 
-- What products are most frequently out of stock?
-- Which suppliers trigger the most manual adjustments?
-- Are stock-outs increasing year over year?
-- Which categories or countries require deeper audit?
+| Metric                      | Top Performer or Issue Area     | Actionable Insight                                     |
+| --------------------------- | ------------------------------- | ------------------------------------------------------ |
+| Most Adjusted Product       | `anderson-filing-cabinet`       | Review supplier or stocking policy                     |
+| Top Supplier by Adjustments | `James G.` (373 manual changes) | Investigate delivery errors or forecast mismatches     |
+| Year with Stockout Spike    | 2025 (20+ stockouts)            | Suggests growing demand or poor replenishment strategy |
+| Peak Inventory Change Hour  | Between 6 PM – 10 PM            | Warehouse operations may need to shift resource timing |
 
----
 
-## 📁 Repository Structure
+## 📁 Project Structure
 
+Inventory-Stock-Analysis-SQL-PowerBI/
+├── sql_scripts/
+│   └── data_cleaning_and_analysis.sql
+├── powerbi/
+│   └── dashboard_screenshot.png
+├── README.md
+
+
+
+## 👨‍💻 Author
+
+**Elisha Bassey**
+
+Data Analyst | SQL | Power BI | Data Transformation
+
+📫 [LinkedIn](#) | [Portfolio](#) | [Email](#)
 
 
