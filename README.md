@@ -81,7 +81,7 @@ For full SQL logic, see:
 
 ## 📈 Power BI Dashboard
 
-![Dashboard Screenshot](./powerbi/dashboard_screenshot.png)
+![Dashboard Screenshot](./powerbi/savvyEcomdashboard.png)
 
 ### 📌 Visualizations Include:
 
