@@ -60,12 +60,12 @@ Key cleaning and transformation steps are documented in:
 Sample queries include:
 
 ```sql
--- Top products by manual inventory adjustments
-SELECT product_id, COUNT(*) AS total_manual_adj
+--manual adjustments per product--
+SELECT [product_id], count(*) as total_manual_adj
 FROM v_inventorylogz
-WHERE change_type = 'inventory_adjustment_manual'
-GROUP BY product_id
-ORDER BY total_manual_adj DESC;
+WHERE [change_type] = 'inventory_adjustment_manual'
+GROUP BY [product_id]
+ORDER BY total_manual_adj desc
 
 -- Stockouts per product
 SELECT product_id, COUNT(*) AS total_stockout
