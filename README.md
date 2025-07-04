@@ -116,9 +116,13 @@ DIVIDE(
 
 Inventory-Stock-Analysis-SQL-PowerBI/
 ├── sql_scripts/
+
 │   └── data_cleaning_and_analysis.sql
+
 ├── powerbi/
+
 │   └── dashboard_screenshot.png
+
 ├── README.md
 
 
