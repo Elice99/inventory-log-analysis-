@@ -129,10 +129,11 @@ Inventory-Stock-Analysis-SQL-PowerBI/
 
 ## 👨‍💻 Author
 
-**Elisha Bassey**
+# Elisha Bassey 
 
-Data Analyst | SQL | Power BI | Data Transformation
+**Data Analyst | SQL | Power BI | Data Visualization**  
 
-📫 [LinkedIn](href="https://linkedin.com/in/elisha-bassey") | [Portfolio](#) | [Email]([basseyelisha99@email.com](mailto:basseyelisha99@email.com))
-
+📫 Email: [basseyelisha99@gmail.com](mailto:basseyelisha99@gmail.com)  
+🔗 LinkedIn: [linkedin.com/in/elisha-bassey](https://www.linkedin.com/in/elisha-bassey)  
+🌐 Portfolio: [elice99.github.io/Portfolio](https://elice99.github.io/Portfolio)
 
