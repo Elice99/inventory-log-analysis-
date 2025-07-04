@@ -94,11 +94,11 @@ For full SQL logic, see:
 ### 🧮 Sample DAX Measures
 
 ```DAX
-StockoutRate = 
-DIVIDE(
-    COUNTROWS(FILTER(v_inventorylogz, v_inventorylogz[stock_after_change] <= 0)),
-    COUNTROWS(v_inventorylogz)
-)
+stockout rate(%) = 
+VAR TotalLog = COUNTROWS('vw_inventory_log')
+VAR OutofStocks = CALCULATE(COUNTROWS('vw_inventory_log'),'vw_inventory_log'[stock_after_changes] = "Out of stock")
+RETURN
+DIVIDE(OutofStocks, TotalLog)*100
 ```
 
 
